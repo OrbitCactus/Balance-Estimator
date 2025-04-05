@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HESTA Investment Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+      .allocation-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .allocation-label {
+        min-width: 250px;
+        margin-right: 10px;
+        font-weight: 500;
+      }
+
+      .allocation-input {
+        width: 100px;
+      }
+    </style>
+    <script>
+      function validateAllocation() {
+        const inputs = document.querySelectorAll('input[name^="allocation"]');
+        let total = 0;
+
+        inputs.forEach(input => {
+          const val = parseFloat(input.value);
+          if (!isNaN(val)) total += val;
+        });
+
+        const warning = document.getElementById('allocation-warning');
+
+        if (Math.abs(total - 100) > 0.01) {
+          warning.textContent = `⚠️ Total allocation must equal 100%. Current total: ${total.toFixed(2)}%`;
+          return false; // prevent form submission
+        }
+
+        warning.textContent = ""; // clear warning
+        return true; // allow submission
+      }
+    </script>
+</head>
+<body class="container mt-4">
+    <h1 class="mb-3">Balance Estimator</h1>
+
+  
+      <!-- Results Display -->
+      {% if results %}
+      <h2 class="mt-4">Results</h2>
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th>Investment Option</th>
+                  <th>Old Units</th>
+                  <th>Current Unit Price</th>
+                  <th>Updated Balance</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for row in results %}
+              <tr>
+                  <td>{{ row.option }}</td>
+                  <td>{{ "%.4f"|format(row.old_units) }}</td>
+                  <td>{{ row.current_price }}</td>
+                  <td>${{ "{:,.2f}".format(row.updated_balance) }}</td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+
+      <h3>Total Updated Balance: ${{ "{:,.2f}".format(total_balance) }}</h3>
+
+      <p class="text-muted mt-3 fst-italic">
+        ⚠️ This calculator provides an estimate only and does not take into account any outgoings (admin fees, insurance premiums, withdrawals, taxes, etc.) or income amounts (such as contributions).
+      </p>
+      {% endif %}
+  
+    <!-- Form for entering balance and allocations -->
+    {% if current_names %}
+          <form method="POST" onsubmit="return validateAllocation();">
+          <label for="account_type" class="form-label fw-bold fs-5">Account Type:</label>
+          <select name="account_type" class="form-select mb-3" required>
+            <option value="super" selected>Super and TTR</option>
+            <option value="income">Income Stream</option>
+          </select>
+          <div class="mb-3">
+          <label for="old_balance" class="form-label fw-bold fs-5">Balance as at 17 April ($):</label>
+          <input type="number" step="0.01" name="old_balance" value= 0 required><br><br>
+
+            <h3>Allocation across investments (%):</h3>
+
+            {% for i in range(10) %}
+              <div class="allocation-row">
+                <label for="allocation{{ i }}" class="allocation-label">{{ current_names[i] }}</label>
+                <input type="number" step="0.1" name="allocation{{ i }}" value="{{ 100 if i == 0 else 0 }}" class="form-control allocation-input" required>
+              </div>
+              {% endfor %}
+          
+          <div id="allocation-warning" class="mt-2 mb-3 text-danger fw-bold"></div>
+          <br>
+          <button type="submit">Calculate</button>
+        </form>
+    {% else %}
+      <p>Unable to load investment options. Please try again later.</p>
+    {% endif %}
+
+    
+</body>
+</html>
