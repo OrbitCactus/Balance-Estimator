@@ -76,4 +76,4 @@ def index():
     return render_template("index.html", current_names=current_names, results=results, total_balance=total_balance)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    app.run(host="0.0.0.0", port=8000, debug=True)
