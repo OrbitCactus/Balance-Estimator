@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HESTA Investment Calculator</title>
+    <title>Balance Calculator</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
       .allocation-row {
@@ -55,9 +55,9 @@
           <thead>
               <tr>
                   <th>Investment Option</th>
-                  <th>Old Units</th>
+                  <th>Est Units 17/4</th>
                   <th>Current Unit Price</th>
-                  <th>Updated Balance</th>
+                  <th>Estimated Balance</th>
               </tr>
           </thead>
           <tbody>
@@ -75,7 +75,7 @@
       <h3>Total Updated Balance: ${{ "{:,.2f}".format(total_balance) }}</h3>
 
       <p class="text-muted mt-3 fst-italic">
-        ⚠️ This calculator provides an estimate only and does not take into account any outgoings (admin fees, insurance premiums, withdrawals, taxes, etc.) or income amounts (such as contributions).
+        ⚠️ These figures are currently based on 1 July for testing purposes, but will soon be updated for unit prices on the 17th of April. This calculator provides an estimate only and does not take into account any outgoings (e.g. admin fees, insurance premiums, taxes, withdrawals, pension payments, etc.) or contributed amounts.
       </p>
       {% endif %}
   
