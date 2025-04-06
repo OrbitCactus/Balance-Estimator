@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Needs to be updated to 17 April unit price figures.
 historical_super_prices = [3.6869, 2.7430, 1.3841, 4.2233, 4.4292, 1.6935, 2.8227, 2.0241, 4.2103, 4.6761]
-historical_income_prices = [2.899, 2.6213, 1.4996, 5.7478, 3.2279, 1.6639, 1.6071, 0.9809, 4.1452, 3.7175]  # currently based on financial year for testing purposes, but will need to be updated to 17 April unit price figures.
+historical_income_prices = [2.7667, 2.5021, 1.4319, 5.5097, 3.0785, 1.6054, 1.5272, 0.9355, 3.8956, 3.5733]  # currently based on financial year for testing purposes, but will need to be updated to 17 April unit price figures.
 
 def fetch_current_prices(account_type):
     today = datetime.today().strftime("%d/%m/%Y")
