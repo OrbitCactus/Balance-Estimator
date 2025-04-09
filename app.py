@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import pandas as pd
 from datetime import datetime
 import re
+import pytz
 
 app = Flask(__name__)
 
@@ -10,7 +11,8 @@ historical_super_prices = [3.6869, 2.7430, 1.3841, 4.2233, 4.4292, 1.6935, 2.822
 historical_income_prices = [2.7667, 2.5021, 1.4319, 5.5097, 3.0785, 1.6054, 1.5272, 0.9355, 3.8956, 3.5733]  # currently based on financial year for testing purposes, but will need to be updated to 17 April unit price figures.
 
 def fetch_current_prices(account_type):
-    today = datetime.today().strftime("%d/%m/%Y")
+    australia_timezone = pytz.timezone("Australia/Sydney")
+    today = datetime.now(australia_timezone).strftime("%d/%m/%Y")
     if account_type == "income":
         url = f"https://www.hesta.com.au/members/investments/income-stream-performance/jcr:content/par/investmentperformanc_1014712806.weekly?date={today}&dailyTransitionDate=22/10/2021"
     else:
