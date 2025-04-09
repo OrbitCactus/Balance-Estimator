@@ -75,7 +75,9 @@
       <h3>Total Updated Balance: ${{ "{:,.2f}".format(total_balance) }}</h3>
 
       <p class="text-muted mt-3 fst-italic">
-        ⚠️ These figures are currently based on 1 July for testing purposes, but will soon be updated for unit prices on the 17th of April. This calculator provides an estimate only and does not take into account any outgoings (e.g. admin fees, insurance premiums, taxes, withdrawals, pension payments, etc.) or contributed amounts.
+      ⚠️ You need to stress that this provides an estimate only. 
+	  <br>
+	  EXPLAIN: This is based on your balance from the 17th of April and estimates the current balance based solely on the unit price movements. It does not take into account any outgoings (e.g. admin fees, insurance premiums, taxes, withdrawals, pension payments, etc.) or contributed amounts.
       </p>
       {% endif %}
   
@@ -107,7 +109,22 @@
     {% else %}
       <p>Unable to load investment options. Please try again later.</p>
     {% endif %}
-
+    <p class="small-italic">
+        This Balance Estimate is not an official HESTA calculator. 
+        <br>
+        The purpose of the Balance Estimate is to provide a rough estimate of a current account balance, though it is not attempting to provide a perfect accurate amount. 
+        <br>
+        The Balance Estimate takes the account balance from the 17th of April and divides it by the unit prices on the 17th of April, to provide an estimated number of units held. It then uses the estimated number of units and multiplies it by the current unit price, to provide an estimate of the current balance. These unit prices are all publicly available on the HESTA website. 
+        The Balance Estimate does not factor in any ingoings (such as contributions) or outgoings (such as admin fees, insurance premiums, pension payments, or withdrawals). 
+        <br>
+        The Balance Estimate requires the account balance from the 17th of April and investment option(s) it is invested in. If the exact investment split is not known, and an estimate is used, this will impact the accuracy of the projections. 
+        <br>
+        No inflation rate has been applied to these estimates. The Balance Estimate is based on the balance and investment splits provided, along with the publicly available unit prices. It has not taken into account all your personal financial needs, circumstances, and objectives, and is not intended to be relied on for the purposes of making a decision in relation to financial products. You should look at your own financial position and requirements before making a decision. You may wish to consult a HESTA Super Adviser or alternatively your own appointed Adviser before making any financial decisions.
+        <br>
+        This website does not store or record any data provided. 
+        <br>
+        While every attempt has been made to ensure the reliability of the information, it should be used as a guide only. There are no claims that the estimate provided is perfectly accurate. No responsibility or liability is accepted for any loss or damage as a result of any person relying on any information obtained by using the Balance Estimate.
+    </p>
     
 </body>
 </html>
