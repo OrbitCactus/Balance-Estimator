@@ -7,8 +7,8 @@ import pytz
 app = Flask(__name__)
 
 # Needs to be updated to 17 April unit price figures.
-historical_super_prices = [3.6869, 2.7430, 1.3841, 4.2233, 4.4292, 1.6935, 2.8227, 2.0241, 4.2103, 4.6761]
-historical_income_prices = [2.7667, 2.5021, 1.4319, 5.5097, 3.0785, 1.6054, 1.5272, 0.9355, 3.8956, 3.5733]  # currently based on financial year for testing purposes, but will need to be updated to 17 April unit price figures.
+historical_super_prices = [3.8030, 2.8425, 1.4253, 4.3654, 4.5784, 1.7487, 2.9585, 2.0979, 4.3731, 4.7815]
+historical_income_prices = [2.8708, 2.6041, 1.4796, 5.7133, 3.1896, 1.6666, 1.6057, 0.9752, 4.0623, 3.6641]  # currently based on financial year for testing purposes, but will need to be updated to 17 April unit price figures.
 
 def fetch_current_prices(account_type):
     australia_timezone = pytz.timezone("Australia/Sydney")
